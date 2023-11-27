@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Especialidad extends Model
+class Estudio extends Model
 {
     use HasFactory;
 
-    public function especialidad()
+    public function aula()
     {
-        return $this->belongsTo(Especialidad::class);
+        return $this->belongsTo(Estudio::class);
     }
 }

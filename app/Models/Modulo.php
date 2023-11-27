@@ -13,4 +13,13 @@ class Modulo extends Model
     protected $fillable = [
         'codigo', 'materia', 'h_semanales', 'h_totales', 'aula', 'user_id', 'especialidad_id', 'estudio_id'
     ];
+    public function modulo()
+    {
+        return $this->hasOne(Modulo::class);
+    }
+
+    public function modulos()
+    {
+        return $this->hasMany(Modulo::class);
+    }
 }
