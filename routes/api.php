@@ -3,8 +3,11 @@
 use App\Http\Controllers\Api\V1\ModuloController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+// use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\ModuloRequest;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +21,18 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    
     return $request->user();
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('modulos', ModuloController::class);
+
+    Route::prefix('v1')->group(function () {
+        Route::apiResource('modulos', ModuloController::class)
+            ->missing(function (Request $request) {
+                return response()->json(['message' => 'Intentas acceder a un módulo inexistente'], 404);
+            });
+    });
 });
 
 // Public routes of authtication
@@ -48,23 +58,3 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/modulo/{id}', 'destroy');
     });
 });
-
-
-
-// Route::controller(ProductController::class)->group(function () {
-//     Route::get('/products', 'index');
-//     Route::get('/products/{id}', 'show');
-//     Route::get('/products/search/{name}', 'search');
-// });
-
-
-// // Protected routes of product and logout
-// Route::middleware('auth:sanctum')->group(function () {
-//     Route::post('/logout', [LoginRegisterController::class, 'logout']);
-
-//     Route::controller(ProductController::class)->group(function () {
-//         Route::post('/products', 'store');
-//         Route::post('/products/{id}', 'update');
-//         Route::delete('/products/{id}', 'destroy');
-//     });
-// });
