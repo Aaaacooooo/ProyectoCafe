@@ -43,8 +43,8 @@ class ModuloController extends Controller
             'h_totales' => 'required|integer',
             'aula' => 'required|string|max:255',
             'user_id' => 'required|exists:users,id',
-            'especialidad_id' => 'required|exists:especialidades,id', // Asegúrate de que coincide con el nombre de la tabla real
-            'estudio_id' => 'required|exists:estudios,id', // Asegúrate de que coincide con el nombre de la tabla real
+            'especialidad_id' => 'required', // Asegúrate de que coincide con el nombre de la tabla real |exists:especialidades,id
+            'estudio_id' => 'required', // Asegúrate de que coincide con el nombre de la tabla real |exists:estudios,id
         ]);
 
         $modulo = Modulo::create($validatedData);

@@ -9,8 +9,8 @@ class Especialidad extends Model
 {
     use HasFactory;
 
-    public function especialidad()
+    public function modulos()
     {
-        return $this->belongsTo(Especialidad::class);
+        return $this->hasMany(Modulo::class);
     }
 }

@@ -9,8 +9,8 @@ class Estudio extends Model
 {
     use HasFactory;
 
-    public function aula()
+    public function modulo()
     {
-        return $this->belongsTo(Estudio::class);
+        return $this->hasOne(Modulo::class);
     }
 }

@@ -13,13 +13,14 @@ class Modulo extends Model
     protected $fillable = [
         'codigo', 'materia', 'h_semanales', 'h_totales', 'aula', 'user_id', 'especialidad_id', 'estudio_id'
     ];
-    public function modulo()
+
+    public function especialidad()
     {
-        return $this->hasOne(Modulo::class);
+        return $this->belongsTo(Especialidad::class);
     }
 
-    public function modulos()
+    public function estudio()
     {
-        return $this->hasMany(Modulo::class);
+        return $this->belongsTo(Estudio::class);
     }
 }
