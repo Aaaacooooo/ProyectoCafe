@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Controllers\Api\V1\EspecialidadController;
 use Illuminate\Http\Resources\Json\JsonResource;
+
 
 class ModuloResource extends JsonResource
 {
@@ -22,7 +24,7 @@ class ModuloResource extends JsonResource
             'h_totales' => $this->h_totales,
             'aula' => $this->aula,
             'user_id' => $this->user_id,
-            'especialidad_id' => $this->especialidad_id,
+            'especialidad' => new EspecialidadResource($this->especialidad),
             'estudio_id' => $this->estudio_id,
         //     'created_at' => $this->created_at,
         //     'updated_at' => $this->updated_at,

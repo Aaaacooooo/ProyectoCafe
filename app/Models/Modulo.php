@@ -14,12 +14,14 @@ class Modulo extends Model
         'codigo', 'materia', 'h_semanales', 'h_totales', 'aula', 'user_id', 'especialidad_id', 'estudio_id'
     ];
 
-    public function especialidad()
+    protected $table = 'modulos';
+
+    public function especialidad() //Relación 1:1
     {
         return $this->belongsTo(Especialidad::class);
     }
 
-    public function estudio()
+    public function estudio() //Relación 1:1
     {
         return $this->belongsTo(Estudio::class);
     }

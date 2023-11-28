@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\EspecialidadController;
 use App\Http\Controllers\Api\V1\ModuloController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,8 +33,14 @@ Route::middleware('auth:sanctum')->group(function () {
             ->missing(function (Request $request) {
                 return response()->json(['message' => 'Intentas acceder a un módulo inexistente'], 404);
             });
+        Route::apiResource('especialidades', EspecialidadController::class)
+            ->missing(function (Request $request) {
+                return response()->json(['message' => 'Intentas acceder a una especialidad inexistente'], 404);
+            });
     });
 });
+
+
 
 // Public routes of authtication
 Route::controller(LoginRegisterController::class)->group(function () {
